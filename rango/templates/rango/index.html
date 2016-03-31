@@ -5,18 +5,17 @@
     </head>
 
     <body>
-        <h1>Rango says...hello world!</h1>
+        <h1>Rango says..hello world!</h1>
 
         {% if categories %}
             <ul>
                 {% for category in categories %}
-                <li>{{ category.name }}</li>
+                <!-- Following line changed to add an HTML hyperlink -->
+                <li><a href="/category/{{ category.slug }}">{{ category.name }}</a></li>
                 {% endfor %}
             </ul>
-        {% else %}
+       {% else %}
             <strong>There are no categories present.</strong>
-        {% endif %}
+       {% endif %}
 
-        <a href="/about/">About</a>
-    </body>
-</html>
+    </bod
