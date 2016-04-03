@@ -4,6 +4,7 @@ from rango.models import Category
 from rango.models import Page
 from rango.forms import CategoryForm
 from rango.forms import PageForm
+from rango.forms import UserForm, UserProfileForm
 
 def index(request):
     # Query the database for a list of ALL categories currently stored.
@@ -106,5 +107,5 @@ def register(request):
         user_form = UserForm()
         profile_form = UserProfileForm()
         
-    return redner(request, 'rango/register.html',
+    return render(request, 'rango/register.html',
     {'user_form': user_form, 'profile_form': profile_form, 'registerd': registered})
