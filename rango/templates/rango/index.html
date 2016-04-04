@@ -1,35 +1,31 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Rango</title>
-    </head>
+{% extends 'base.html' %}
 
-    <body>
-        {% if user.is_authenticated %}
-        <h1>Rango says... hello {{ user.username }}!</h1>
-        {% else %}
-        <h1>Rango says... hello world!</h1>
-        {% endif %}
+{% load staticfiles %}
 
-        {% if categories %}
-            <ul>
-                {% for category in categories %}
-                <li><a href="{% url 'category' category.slug %}">{{ category.name }}</a></li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <strong>There are no categories present.</strong>
-        {% endif %}
-        
-        {% if user.is_authenticated %}
-        <a href="/restricted/">Restricted Page</a><br />
-        <a href="/logout/">Logout</a><br />
-        {% else %}
-        <a href="/register/">Register Here</a><br />
-        <a href="/login/">Login</a><br />
-        {% endif %}
+{% block title %}
+{% if user.is_authenticated %}
+Hello {{ user.username }}!
+{% else %}
+Hello world!
+{% endif %}
+{% endblock %}
 
-        <a href="/about/">About</a><br/>
-        <a href="/add_category/">Add a New Category</a><br />
-    </body>
-</html>
+{% block body_block %}
+
+{% if user.is_authenticated %}
+<h1>Hello {{ user.username }}!</h1>
+{% else %}
+<h1>Hello world!</h1>
+{% endif %}
+
+{% if categories %}
+<ul>
+    {% for category in categories %}
+    <li><a href="{% url 'category' category.slug %}">{{ category.name }}</a></li>
+    {% endfor %}
+</ul>
+{% else %}
+<strong>There are no categories present.</strong>
+{% endif %}
+
+{% endblock %}
